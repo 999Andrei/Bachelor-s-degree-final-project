@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="ro">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panou Admin</title>
+  <link rel="icon" type="image/png" href="/images/logo/logoo-removebg-preview.png" />
+
+  <!-- font awesome cdn link  -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+  <!-- bootstrap cdn link  -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.1/css/bootstrap.min.css">
+
+  <!-- custom css file link  -->
+  <!-- <link rel="stylesheet" href="css/style.css">   -->
+
+  <link rel="stylesheet" href="css/form.css">
+  <link rel="stylesheet" href="css/loginForm.css">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+  <link rel="stylesheet" type="text/css" href="https://npmcdn.com/flatpickr/dist/themes/airbnb.css">
+  <!-- css for sweetalert -->
+  <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.min.css'>
+  <!-- jquery script -->
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+</head>
+
+<body>
+
+  <section class="container">
+    <form id="login_form" action="" class="validate">
+      <h1 class="heading">Bine ați venit!</h1>
+      <h1 class="heading">Conectare</h1>
+      <div class="group">
+        <input type="text" id="login-name" placeholder="Nume (obligatoriu)" required>
+        <span class="highlight"></span>
+
+
+      </div>
+
+      <div class="group">
+        <input type="password" id="login-password" placeholder="Parolă (obligatorie)" name="password" required>
+        <span class="highlight"></span>
+
+
+      </div>
+
+      <a class="wrap" id="register_frm" href="#">Nu aveți cont? Creați unul aici</a>
+      <div class="wrap">
+        <button type="button" id="login-btn" class="submit_button">Conectare</button>
+      </div>
+
+
+    </form>
+
+
+    <form id="register_form" action="" class="validate">
+      <h1 class="heading">Bine ați venit!</h1>
+      <h1 class="heading">Înregistrare</h1>
+      <div class="group">
+        <input type="text" id="register-name" placeholder="Nume (obligatoriu)" required disabled>
+        <span class="highlight"></span>
+
+
+      </div>
+      <div class="group">
+        <input type="password" id="register-password" name="password" placeholder="Parolă (obligatoriu)" required
+          disabled />
+        <span class="highlight"></span>
+
+
+      </div>
+      <div class="group">
+        <input type="password" id="register-confirm-password" placeholder="Confirmați parola (obligatoriu)"
+          name="password" required disabled />
+        <span class="highlight"></span>
+
+
+      </div>
+      <div class="group">
+        <input type="text" id="register-employer-code" placeholder="Cod angajator (obligatoriu)" required disabled>
+        <span class="highlight"></span>
+
+      </div>
+      <a class="wrap" id="login_frm" href="#">Cont existent?Apasă aici</a>
+      <div class="wrap">
+        <button type="button" id="register-btn" class="submit_button">Înregistrare</button>
+      </div>
+
+    </form>
+
+  </section>
+  <section id="doctorData">
+
+    <p id="title"></p>
+    <h3>Programările dumneavoastră</h3>
+
+    <table id="table" class="sortable">
+      <tr>
+        <th>Nume Client</th>
+        <th>Data programării</th>
+        <th>Ora programării</th>
+        <th>Telefon</th>
+        <th>Email</th>
+      </tr>
+    </table>
+    <div class="container">
+      <h2>Introduceți programări </h2>
+      <p>Selectați data și ora</p>
+      <input id="calendar" name="date calendaristica" class="box input-form" placeholder="Selectați data și ora" />
+
+
+      <div id="appointment" class="wrap">
+        <button type="button" id="avDate" class="submit_button">Trimite</button>
+      </div>
+      </br></br></br></br>
+      <h2>Modificați profilul dumneavoastră</h2>
+
+
+      <div class="containerimg">
+        <h2>Încărcați o imagine</h2>
+        <div class="panel">
+          <div class="button_outer">
+
+            <div class="btn_upload">
+              <input type="file" id="upload_file" name="">
+              Poză profil
+            </div>
+            <div class="processing_bar"></div>
+            <div class="success_box"></div>
+          </div>
+        </div>
+        <div class="error_msg"></div>
+        <div class="uploaded_file_view" id="uploaded_view">
+          <span class="file_remove">X</span>
+        </div>
+      </div>
+      <a id="filename"></a>
+
+      <p>Titlul profilului</p>
+      <input type="text" id="description_title" class="input-form" placeholder="Titlu" required></br>
+      <p>Descrierea profilului</p>
+      <textarea id="description_text" rows="3" placeholder="Descriere"></textarea>
+      <div class="wrap">
+        <button type="button" id="profile_btn" class="submit_button">Actualizare</button>
+      </div>
+
+
+
+    </div>
+    </form>
+    </div>
+  </section>
+  <!-- custom script  -->
+  <script src="js/login.js"></script>
+  <!-- script that connects with database -->
+  <script type="module" src="js/adminDB.js"></script>
+  <!-- script for sweetalert -->
+
+  <!-- script responsible for encryption -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js"
+    integrity="sha256-/H4YS+7aYb9kJ5OKhFYPUjSJdrtV6AeyJOtTkw6X72o=" crossorigin="anonymous"></script>
+  <!-- sorting table script -->
+  <script src="https://www.kryogenix.org/code/browser/sorttable/sorttable.js"></script>
+  <!-- <script src="js/script.js"></script> -->
+  <!-- database js file link -->
+  <!-- <script type="module" src="js/db.js"></script> -->
+  <!-- calendar script + romanian adaptation -->
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  <script src="https://npmcdn.com/flatpickr/dist/flatpickr.min.js"></script>
+  <script src="https://npmcdn.com/flatpickr/dist/l10n/ro.js"></script>
+  <!-- alert script -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.all.min.js"></script>
+
+
+
+
+</body>
+
+</html>

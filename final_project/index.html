@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="ro">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Ace Clinic</title>
+   <link rel="icon" type="image/png" href="/images/logo/logoo-removebg-preview.png" />
+   <!-- font awesome cdn link  -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+   <!-- bootstrap cdn link  -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.1/css/bootstrap.min.css">
+   <!-- custom css file link  -->
+   <link rel="stylesheet" href="css/style.css">
+   <!-- form css file -->
+   <link rel="stylesheet" href="css/form.css">
+   <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css"> -->
+   <!-- calendar theme css file -->
+   <link rel="stylesheet" type="text/css" href="https://npmcdn.com/flatpickr/dist/themes/airbnb.css">
+   <!-- css for sweetalert -->
+   <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.min.css'>
+
+</head>
+
+<body>
+
+   <!-- header section starts  -->
+
+   <header class="header fixed-top">
+
+      <div class="container">
+
+         <div class="row align-items-center justify-content-between">
+
+            <a href="#home" class="logo"><span>Ace</span> Clinic</a>
+
+            <nav class="nav">
+               <a href="#home">Acasă</a>
+               <a href="#about">Despre noi</a>
+               <a href="#services">Servicii</a>
+               <a href="#reviews">Recenzii</a>
+               <a href="#contact">Programări</a>
+            </nav>
+
+            <a href="#contact" class="link-btn">Programează-te</a>
+
+            <div id="menu-btn" class="fas fa-bars"></div>
+
+         </div>
+
+      </div>
+
+   </header>
+
+   <!-- header section ends -->
+
+   <!-- home section starts  -->
+
+   <section class="home" id="home">
+
+      <div class="container">
+
+         <div class="row min-vh-100 align-items-center">
+            <div class="content text-center text-md-left">
+               <h3>Noi avem grijă de tine</h3>
+               <p>Clinica Ace este un loc în care toate nevoile dumneavoastră sunt ascultate și vi se oferă cele mai
+                  bune soluții.</p>
+               <a href="#contact" class="link-btn">Programează-te</a>
+            </div>
+         </div>
+
+      </div>
+
+   </section>
+
+   <!-- home section ends -->
+
+   <!-- about section starts  -->
+
+   <section class="about" id="about">
+
+      <div class="container">
+         <div class="select">
+            <select id="about_doctors">
+               <option value="Ace Clinic" selected>Ace Clinic</option>
+            </select>
+            <fieldset>
+               <legend>Dr.</legend>
+            </fieldset>
+         </div>
+         <div class="row align-items-center">
+            <div class="col-md-6 image">
+               <img id="profile_img" src="images/doctors/clinic.png" class="w-100 mb-5 mb-md-0" alt="Imagine clinică">
+            </div>
+            <div class="col-md-6 content">
+               <span id="dr_name">Ace Clinic</span>
+               <h3 id="description_title">Servicii medicale de specialitate pentru tine si familia ta</h3>
+               <p id="description_text">Misiunea noastră este de a informa și educa pacienții și de a le oferi planuri
+                  de tratament eficiente
+                  și precise pentru afecțiunile de care aceștia suferă.
+                  Cabinetele folosesc o bază de date informatizată în care se stochează informația actului medical
+                  pentru fiecare pacient in parte,
+                  astfel încât există posibilitatea urmăririi în timp a acestuia și aprecierea evoluției diferitelor
+                  afecțiuni.</p>
+               <a href="#contact" class="link-btn">Programează-te</a>
+            </div>
+         </div>
+      </div>
+   </section>
+
+   <!-- about section ends -->
+
+   <!-- services section starts  -->
+
+   <section class="services" id="services">
+
+      <h1 class="heading">Serviciile oferite de noi</h1>
+      <div class="box-container container">
+         <div class="box">
+            <img src="images/icon-1.png" alt="">
+            <h3>Consultații</h3>
+            <p>Oferim consultații în cabinetul nostru pentru orice fel de afecțiuni</p>
+         </div>
+         <div class="box">
+            <img src="images/icon-2.png" alt="">
+            <h3>Analize complete</h3>
+            <p>La noi îți poți face toate analizele de care ai nevoie</p>
+         </div>
+         <div class="box">
+            <img src="images/icon-3.png" alt="">
+            <h3>Rețete compensate</h3>
+            <p>Clinica noastră lucrează prin casa de asigurări de sănătate</p>
+         </div>
+         <div class="box">
+            <img src="images/icon-4.png" alt="">
+            <h3>Lucrări dentare</h3>
+            <p>Oferim o gamă largă de servicii stomatologice</p>
+         </div>
+         <div class="box">
+            <img src="images/icon-5.png" alt="">
+            <h3>Internare pe loc</h3>
+            <p>Clinica Ace dispune de paturi pentru internare pentru pacienții în nevoie</p>
+         </div>
+         <div class="box">
+            <img src="images/icon-6.png" alt="">
+            <h3>Aparatură modernă</h3>
+            <p>Aici vei găsi aparatură de ultimă generație</p>
+         </div>
+      </div>
+      
+   </section>
+
+   <!-- services section ends -->
+
+   <!-- process section starts  -->
+
+   <section class="process">
+
+      <h1 class="heading">Procesul de tratare al pacientului</h1>
+
+      <div class="box-container container">
+
+         <div class="box">
+            <img src="images/process-1.png" alt="">
+            <h3>Consultația</h3>
+            <p>Primul pas în a rezolva orice problemă este de a afla cauza și efectele acesteia.</p>
+         </div>
+
+         <div class="box">
+            <img src="images/process-2.png" alt="">
+            <h3>Prescrierea tratamentului</h3>
+            <p>Când se cunosc cauzele și efectele problemei poate începe procesul de tratare.</p>
+         </div>
+
+         <div class="box">
+            <img src="images/process-3.png" alt="">
+            <h3>Internare</h3>
+            <p>În cazul în care problema se dovedește a fi una complexă, pacientul va fi internat.</p>
+         </div>
+
+      </div>
+
+   </section>
+
+   <!-- process section ends -->
+
+   <!-- reviews section starts  -->
+
+   <section class="reviews" id="reviews">
+
+      <h1 class="heading"> Recenzii clienți </h1>
+
+      <div class="box-container container">
+
+         <div class="box">
+            <img src="images/pic-1.jpg" alt="">
+            <p>Sunt extrem de încântată de serviciile acestei clinici medicale,
+               personalul este profesionist, recomand cu drag această clinică.
+            </p>
+            <div class="stars">
+               <i class="fas fa-star"></i>
+               <i class="fas fa-star"></i>
+               <i class="fas fa-star"></i>
+               <i class="fas fa-star"></i>
+               <i class="fas fa-star-half-alt"></i>
+            </div>
+            <h3>Popa Liviu</h3>
+
+         </div>
+
+         <div class="box">
+            <img src="images/pic-2.jpg" alt="">
+            <p>Am apelat la această clinică inițial pentru o simplă consultație de rutină,
+               dar de acum voi deveni client fidel mereu când voi avea nevoie.</p>
+            <div class="stars">
+               <i class="fas fa-star"></i>
+               <i class="fas fa-star"></i>
+               <i class="fas fa-star"></i>
+               <i class="fas fa-star"></i>
+               <i class="fas fa-star-half-alt"></i>
+            </div>
+            <h3>Mari Georgiana</h3>
+
+         </div>
+
+         <div class="box">
+            <img src="images/pic-3.jpg" alt="">
+            <p>Am avut o problemă urgentă și personalul de la Ace Clinic mi-a soluționat problema în cel mai scurt timp,
+               recomand cu încredere.</p>
+            <div class="stars">
+               <i class="fas fa-star"></i>
+               <i class="fas fa-star"></i>
+               <i class="fas fa-star"></i>
+               <i class="fas fa-star"></i>
+               <i class="fas fa-star-half-alt"></i>
+            </div>
+            <h3>Adriana Leonidă</h3>
+
+         </div>
+
+      </div>
+
+   </section>
+
+   <!-- reviews section ends -->
+
+   <!-- contact section starts  -->
+
+   <section class="contact" id="contact">
+
+      <h1 class="heading">Fă-ți o programare online</h1>
+
+      <form action="">
+
+         <div class="select-box">
+            <label for="dr_id" class="lbl_form">Selectați un doctor</label>
+            <select id="dr_id" class="box">
+               <option value="" disabled selected hidden>Selectați doctorul</option>
+            </select>
+
+
+            <label for="date_" class="lbl_form">Selectați o dată calendaristică</label>
+            <input id="calendar" name="date_" class="box input-form" placeholder="Selectați data" />
+
+            <label for="available_hours" class="lbl_form">Selectați ora</label>
+            <select id="available_hours" class="box">
+               <option value="" selected option disabled selected hidden>Selectați ora dorită</option>
+            </select>
+
+            <label for="name" class="lbl_form">Nume complet</label>
+            <input id="patient_name" name="name" class="box input-form" placeholder="Introduceți numele" />
+
+            <label for="number" class="lbl_form">Număr de telefon</label>
+            <input id="patient_phonenumber" type="number" name="number" class="box input-form"
+               placeholder="Introduceți numărul de telefon" />
+
+            <label for="email" class="lbl_form">Adresă email</label>
+            <input id="patient_email" type="text" name="email" class="box input-form"
+               placeholder="Introduceți adresa email" />
+
+            <div class="wrap">
+               <button type="button" id="saveData" class="submit_button">Trimite</button>
+            </div>
+
+
+            </br></br>
+            <label for="app_code" class="lbl_form">Verifică programarea</label>
+            <input id="patient_code" name="app_code" class="box input-form"
+               placeholder="Introduceți codul programării" />
+            <div class="wrap">
+               <button type="button" id="checkData" class="submit_button">Verifică</button>
+            </div>
+
+         </div>
+      </form>
+
+   </section>
+
+   <!-- contact section ends -->
+
+   <!-- footer section starts  -->
+
+   <section class="footer">
+
+      <div class="box-container container">
+
+         <div class="box">
+            <i class="fas fa-phone"></i>
+            <h3>Telefon</h3>
+            <p>0251-456-7890</p>
+            <p>+40 774-620-333</p>
+         </div>
+
+         <div class="box">
+            <i class="fas fa-map-marker-alt"></i>
+            <h3>Adresa noastră</h3>
+            <p>Blvd. Decebal nr. 107, Craiova, România</p>
+         </div>
+
+         <div class="box">
+            <i class="fas fa-clock"></i>
+            <h3>Ore de lucru</h3>
+            <p>07:00-20:00</p>
+         </div>
+
+         <div class="box">
+            <i class="fas fa-envelope"></i>
+            <h3>Adrese email</h3>
+            <p>camen.marius.e5v@student.ucv.ro</p>
+            <p>camenmariusandrei@gmail.com</p>
+         </div>
+
+      </div>
+
+      <div class="credit"> &copy; 
+         SESIUNEA DE LICENȚĂ IULIE/2022 ACE.UCV
+      </div>
+
+   </section>
+
+   <!-- footer section ends -->
+
+   <!-- custom js file link  -->
+   <script src="js/script.js"></script>
+   <!-- database js file link -->
+   <script type="module" src="js/db.js"></script>
+   <!-- calendar script + romanian adaptation -->
+   <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+   <script src="https://npmcdn.com/flatpickr/dist/flatpickr.min.js"></script>
+   <script src="https://npmcdn.com/flatpickr/dist/l10n/ro.js"></script>
+   <!-- alert script -->
+   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.all.min.js"></script>
+</body>
+
+</html>
