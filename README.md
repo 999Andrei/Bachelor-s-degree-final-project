@@ -12,3 +12,6 @@ As a doctor you need to login/register to the website in order to add appointmen
 
 All information is displayed dinamically from the database.
 
+Latest update: - fixed a bug where client code wouldnt match with database code
+- fixed some form control messages
+- added delete option for clients with their appointments
