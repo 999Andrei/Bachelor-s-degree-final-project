@@ -1,8 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js";
 import { getDatabase, ref, set, onValue, update, remove, get, child, } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-database.js";
-
-
 // Your web app's Firebase configuration
 const firebaseConfig = {
     apiKey: "AIzaSyDuu-fQdykkEJViGD8lT8J9Nw2XE12uJAA",
@@ -20,16 +18,8 @@ const database = getDatabase(app);
 const dbRef = ref(database);
 
 var register = document.getElementById('register-btn');
-
-
 var logged = 0;
 var doctor = "";
-
-
-
-
-
-
 // employer code should be AceClinic
 let code = "";
 //store in code the Cod angajare from firebase value
@@ -44,8 +34,6 @@ get(child(dbRef, "Cod angajare")).then((snapshot) => {
     .catch((error) => {
         console.error(error);
     });
-
-
 register.addEventListener('click', function (e) {
     var username = document.getElementById('register-name').value;
     var password = document.getElementById('register-password').value;
@@ -93,7 +81,6 @@ register.addEventListener('click', function (e) {
             }
         }
         );
-
     }
     else {
         Swal.fire({
@@ -104,9 +91,7 @@ register.addEventListener('click', function (e) {
         })
     }
 });
-
 var login = document.getElementById('login-btn');
-
 login.addEventListener('click', function (e) {
     var username = document.getElementById('login-name').value;
     var password = document.getElementById('login-password').value;
@@ -150,11 +135,7 @@ login.addEventListener('click', function (e) {
             })
         }
     });
-
-
     var table = document.getElementById('table');
-
-
     setTimeout(function () {
         if (logged == 1) {
             console.log("logged");
@@ -195,7 +176,6 @@ login.addEventListener('click', function (e) {
                 }
                 );
         }
-
     }
         , 300);
 });
@@ -252,12 +232,31 @@ document.getElementById("profile_btn").addEventListener('click', function (e) {
     var description = document.getElementById('description_text').value;
     console.log(photoSrc);  
     var doctor = document.getElementById('login-name').value;
+    if (photoSrc == "" || title == "" || description == "") {
+        Swal.fire({
+            icon: 'error',
+            title: 'Eroare',
+            text: 'Completați toate câmpurile!',
+            showConfirmButton: false,
+            timer: 2500
+        })
+        return;
+    }
     // use set to set the data
     set(ref(database ,'Doctori/' + doctor + '/Profil/'), {
         Titlu: title,
         Descriere: description,
         Poza: photoSrc
     });
-
+    Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: 'Profilul a fost actualizat cu succes!',
+        showConfirmButton: false,
+        timer: 1000
+    }) 
+    // document.getElementById('filename').innerHTML = "";
+    // document.getElementById('description_title').innerHTML = "";
+    // document.getElementById('description_text').innerHTML = "";
 });
 

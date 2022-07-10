@@ -1,5 +1,5 @@
 // Import the functions you need from the SDKs you need
-import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js";
+import { initializeApp} from "https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js";
 import { getDatabase, ref, set, onValue, update, remove, get, child } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-database.js";
 import "https://cdn.jsdelivr.net/npm/flatpickr"
 import "https://npmcdn.com/flatpickr/dist/l10n/ro.js"
@@ -23,12 +23,9 @@ const dbRef = ref(database);
 let doctori = document.getElementById("dr_id");
 let date_calendaristice = document.getElementById("calendar");
 let ore_disponibile = document.getElementById("available_hours");
-
-
 // show doctors in option group with id=dr_id
 get(child(dbRef, "Doctori/")).then((snapshot) => {
     let option = document.createElement("option");
-
     if (snapshot.exists()) {
         snapshot.forEach((child) => {
             option = document.createElement("option");
@@ -42,14 +39,8 @@ get(child(dbRef, "Doctori/")).then((snapshot) => {
     .catch((error) => {
         console.error(error);
     });
-
-
-
-
-
 var s = new Array();
 document.getElementById("dr_id").addEventListener("change", function () {
-
     date_calendaristice.value = "";
     ore_disponibile.innerHTML = "";
     let option = document.createElement("option");
@@ -76,10 +67,7 @@ document.getElementById("dr_id").addEventListener("change", function () {
     }, 300);
 });
 // get selected doctor and return childs in date_calendaristice
-
-
 function getDatesFromDoctors() {
-
     var av_dates = new Array();
     var x = "";
     // date_calendaristice.innerHTML = "";
@@ -87,14 +75,11 @@ function getDatesFromDoctors() {
     // let option = document.createElement("option");
     // option.text = "";
     // date_calendaristice.add(option);
-
     get(child(dbRef, "Doctori/" + doctor + "/date_calendaristice/")).then((snapshot) => {
-
         if (snapshot.exists()) {
             snapshot.forEach((child) => {
                 av_dates.push(child.key);
                 x += child.key;
-
                 // console.log(x);
                 // console.log(av_dates[av_dates.length-1]);
                 // option = document.createElement("option");
@@ -103,7 +88,6 @@ function getDatesFromDoctors() {
                 // option.text = child.key;
                 // date_calendaristice.add(option);
             });
-
             // return x.date;
         } else {
             console.log("No data available");
@@ -117,16 +101,8 @@ function getDatesFromDoctors() {
     // return the av_dates array outside the function
     // console.log(x);
     return av_dates;
-
-
-
-
 }
-
-
 //get selected doctor and date and return childs in ore_disponibile
-
-
 date_calendaristice.addEventListener("change", () => {
     ore_disponibile.innerHTML = "";
     let doctor = doctori.value;
@@ -138,14 +114,10 @@ date_calendaristice.addEventListener("change", () => {
     option.hidden = true;
     option.value = "";
     ore_disponibile.add(option);
-
     get(child(dbRef, "Doctori/" + doctor + "/date_calendaristice/" + data + "/")).then((snapshot) => {
-
         if (snapshot.exists()) {
             snapshot.forEach((childSnapshot) => {
                 // console log grandchilds
-
-
                 get(child(dbRef, "Doctori/" + doctor + "/date_calendaristice/" + data + "/" + childSnapshot.key + "/")).then((snapshot) => {
                     if (snapshot.exists()) {
                         snapshot.forEach((child) => {
@@ -163,7 +135,6 @@ date_calendaristice.addEventListener("change", () => {
                         console.error(error);
                     });
             });
-
         } else {
             console.log("No data available");
         }
@@ -185,7 +156,6 @@ saveData.addEventListener('click', (e) => {
     // pattern for email address
     var pattern = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
     if (doctori.value == "") {
-
         Swal.fire({
             icon: 'error',
             title: 'Eroare',
@@ -202,7 +172,6 @@ saveData.addEventListener('click', (e) => {
             confirmButtonText: 'Ok'
         })
         return;
-
     }
     if (ore_disponibile.value == "") {
         Swal.fire({
@@ -212,7 +181,6 @@ saveData.addEventListener('click', (e) => {
             confirmButtonText: 'Ok'
         })
         return;
-
     }
     if (firstName.value == "") {
         Swal.fire({
@@ -222,7 +190,6 @@ saveData.addEventListener('click', (e) => {
             confirmButtonText: 'Ok'
         })
         return;
-
     }
     if (phone.value == "" || phone.value.length != 10) {
         Swal.fire({
@@ -232,71 +199,55 @@ saveData.addEventListener('click', (e) => {
             confirmButtonText: 'Ok'
         })
         return;
-
     }
-    //regex method to check if email is valid
+    // method to check if email is valid
     if (email.value == "" || !pattern.test(email.value)) {
         Swal.fire({
             icon: 'error',
             title: 'Eroare',
             text: 'Trebuie să introduci un email valid!',
             confirmButtonText: 'Ok'
-
         })
         return;
-
     }
     // if all the fields are filled, save the data
-
-
-
     var codProgramare = randomClientAppCode();
     set(ref(database, 'Doctori/' + doctor + '/Programari/' + codProgramare), {
-
         Nume: firstName.value,
         Telefon: phone.value,
         Email: email.value,
         Data_Programarii: date_calendaristice.value,
         Ora: ore_disponibile.value,
         Cod_Programare: codProgramare
-
-
     });
+        // schimba valabilitatea intervalelor orare pentru doctorul selectat
+    let hourAvailability = ref(database, "Doctori/" + doctor + "/date_calendaristice/" + data + "/" + ora + "/" + ora);
+    set(hourAvailability, 0);
+    // console.log('Doctori/' + doctor + '/Programari/' + codProgramare);
     Swal.fire({
         icon: 'success',
         title: 'Felicitări',
-        html: 'Programare realizată cu succes, vă mulțumim!' + '<br/> <strong>' + randomClientAppCode() + ' </strong><br/>' +  " Acesta este codul dumneavoastră de programare, îl puteți folosi pentru a vedea programarea dumneavoastră.",
-    })
-
-    // schimba valabilitatea intervalelor orare pentru doctorul selectat
-
-    let hourAvailability = ref(database, "Doctori/" + doctor + "/date_calendaristice/" + data + "/" + ora + "/" + ora);
-    set(hourAvailability, 0);
-
-
-
+        html: 'Programare realizată cu succes, vă mulțumim!' + '<br/> <strong>' + codProgramare + ' </strong><br/>' +  " Acesta este codul dumneavoastră de programare, îl puteți folosi pentru a vedea programarea dumneavoastră.",
+        confirmButtonText: `Ok`,
+    }).then((result) => {  
+        
+        if (result.isConfirmed) {    
+            window.location.reload(true);    
+        } 
+    });
 });
-
 document.getElementById("checkData").addEventListener('click', (e) => {
     // check the code for the patient   
     // get the code from the input field
-
-
     //simple timeout function
-
-
-
     let code = document.getElementById('patient_code').value;
-
     //get all doctors from database in an array
     let doctors = [];
     setTimeout(function () {    // wait for the database to load
         get(child(dbRef, "Doctori/")).then((snapshot) => {
             if (snapshot.exists()) {
                 snapshot.forEach((childSnapshot) => {
-
                     doctors.push(childSnapshot.key);
-
                 });
             } else {
                 console.log("No data available");
@@ -307,12 +258,9 @@ document.getElementById("checkData").addEventListener('click', (e) => {
             });
     }, 300);
     setTimeout(function () {
-        console.log(doctors);
-
+        // console.log(doctors);
         // get the data from the database
         for (let i = 0; i < doctors.length; i++) {
-
-
             get(child(dbRef, "Doctori/" + doctors[i] + "/Programari/")).then((snapshot) => {
                 if (snapshot.exists()) {
                     snapshot.forEach((childSnapshot) => {
@@ -324,7 +272,6 @@ document.getElementById("checkData").addEventListener('click', (e) => {
                                 Data_Programarii: snapshot.val().Data_Programarii,
                                 Ora: snapshot.val().Ora,
                                 Cod_Programare: snapshot.val().Cod_Programare
-
                             }
                             // console.log(patient);
                             if (snapshot.val().Cod_Programare == code) {
@@ -335,11 +282,32 @@ document.getElementById("checkData").addEventListener('click', (e) => {
                                     showCancelButton: true,
                                     cancelButtonText: 'Anulează',
                                     confirmButtonText: 'Ok',
+                                }).then((result) => {  
+                                    if (!result.isConfirmed) {    
+                                        // console.log("Anulat");  
+                                        // remove the child from the database
+                                      let deleteAppointment = ref(database, "Doctori/" + doctors[i] + "/Programari/" + childSnapshot.key);
+                                      set(deleteAppointment, null).then(() => {
+                                            // console.log(ref(database, "Doctori/" + doctors[i] + "/date_calendaristice/" + patient.Data_Programarii + "/" + patient.Ora + "/" + patient.Ora));
+                                        let hourAvailability = ref(database, "Doctori/" + doctors[i] + "/date_calendaristice/" + patient.Data_Programarii + "/" + patient.Ora + "/" + patient.Ora);
+                                        set(hourAvailability, 1);
 
+                                            Swal.fire({
+                                                icon: 'success',
+                                                title: 'Programare anulată',
+                                                text: 'Programarea a fost anulată cu succes!',
+                                                confirmButtonText: 'Ok'
+                                            }).then((result) => {
+                                                if (result.isConfirmed) {
+                                                    window.location.reload(true);
+                                                }
+                                            });
+                                        })
+                                      
+                                        } 
                                 });
                                 return;
                             }
-
                         })
                             .catch((error) => {
                                 console.error(error);
@@ -347,34 +315,20 @@ document.getElementById("checkData").addEventListener('click', (e) => {
                     });
                 } else {
                     console.log("No data available");
-
                 }
             })
-
                 .catch((error) => {
                     console.error(error);
                 });
         }
     }, 500);
-
-
 });
-
-
-
-
-
-
 // functie pentru a creea un cod unic fiecarei programari, pe care clientul il poate folosi pentru a vedea programarea
 function randomClientAppCode() {
     var text = Math.random().toString(36).slice(2);
     return text;
 }
-
-
-
 // document.getElementById("phoneNumber").addEventListener()
-
 // get all doctors from database and add them to the select element with id "abd"
 get(child(dbRef, "Doctori/")).then((snapshot) => {
     if (snapshot.exists()) {
@@ -396,7 +350,6 @@ document.getElementById("about_doctors").addEventListener('change', (e) => {
     var title = document.getElementById("description_title");
     var description = document.getElementById("description_text");
     var photo = document.getElementById("profile_img");
-
     if (document.getElementById("about_doctors").value == "Ace Clinic") {
         name.innerHTML = "Ace Clinic";
         title.innerHTML = "Servicii medicale de specialitate pentru tine si familia ta";
@@ -404,14 +357,10 @@ document.getElementById("about_doctors").addEventListener('change', (e) => {
         photo.src = "../images/doctors/clinic.png";
         return;
     }
-
-
     // get the doctor selected
     // show from profile child title description and photo
     // get the data from the database
     // empty the div with id "about_doctor"
-
-
     let doctor = document.getElementById("about_doctors").value;
     get(child(dbRef, "Doctori/" + doctor + "/Profil")).then((snapshot) => {
         if (snapshot.exists()) {
@@ -423,7 +372,6 @@ document.getElementById("about_doctors").addEventListener('change', (e) => {
             console.log("No data available");
         }
     })
-
         .catch((error) => {
             console.error(error);
         }

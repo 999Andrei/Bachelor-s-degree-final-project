@@ -37,7 +37,6 @@ var btnUpload = $("#upload_file"),
 			},3000);
             // console.log(btnUpload);
             // console.log(e.target.files[0].name);
-
 			var uploadedFile = URL.createObjectURL(e.target.files[0]);
             var filename = document.getElementById("filename");
             filename.value = "../images/doctors/" + e.target.files[0].name;
