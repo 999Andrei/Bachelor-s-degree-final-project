@@ -15,3 +15,5 @@ All information is displayed dinamically from the database.
 Latest update: - fixed a bug where client code wouldnt match with database code
 - fixed some form control messages
 - added delete option for clients with their appointments
+
+DEMO available here: https://999andrei.github.io/Bachelor-s-degree-final-project/final_project/
